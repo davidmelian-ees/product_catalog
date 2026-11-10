@@ -1,4 +1,4 @@
-ID;Name;Description;ImageUrl;ReleaseDate;DiscontinuedDate;Price;Height;Width;Depth;Quantity
-5f1b6c1e-1c1a-4a3e-9a51-000000000001;Portátil Pro 14;Portátil de 14 pulgadas;https://picsum.photos/id/0/300;2025-03-01T00:00:00Z;;899.90;2.00;32.00;22.00;12.00
-5f1b6c1e-1c1a-4a3e-9a51-000000000002;Monitor 27;Monitor 4K de 27 pulgadas;https://picsum.photos/id/1/300;2024-10-15T00:00:00Z;;329.00;45.00;61.00;20.00;8.00
-5f1b6c1e-1c1a-4a3e-9a51-000000000003;Balón de fútbol;Balón talla 5;https://picsum.photos/id/2/300;2023-06-01T00:00:00Z;2026-01-31T00:00:00Z;24.95;22.00;22.00;22.00;20.00
+ID;Name;Description;ImageUrl;ReleaseDate;DiscontinuedDate;Price;Height;Width;Depth;Quantity;PriceCondition;PriceDetermination
+5f1b6c1e-1c1a-4a3e-9a51-000000000001;Portátil Pro 14;Portátil de 14 pulgadas;https://picsum.photos/id/0/300;2025-03-01T00:00:00Z;;899.90;2.00;32.00;22.00;12.00;PC;PD1
+5f1b6c1e-1c1a-4a3e-9a51-000000000002;Monitor 27;Monitor 4K de 27 pulgadas;https://picsum.photos/id/1/300;2024-10-15T00:00:00Z;;329.00;45.00;61.00;20.00;8.00;PC;PD2
+5f1b6c1e-1c1a-4a3e-9a51-000000000003;Balón de fútbol;Balón talla 5;https://picsum.photos/id/2/300;2023-06-01T00:00:00Z;2026-01-31T00:00:00Z;24.95;22.00;22.00;22.00;20.00;PV;PD1

@@ -11,4 +11,20 @@ service CatalogService {
     entity Months            as projection on logali.Months;
     entity ProductReview     as projection on logali.ProductReview;
     entity SalesData         as projection on logali.SalesData;
+    entity SelProducts       as projection on logali.SelProducts;
+    entity SelProducts1      as projection on logali.SelProducts1;
+    entity SelProducts2      as projection on logali.SelProducts2 {
+        key Name,
+            *
+    };
+    entity SelProducts3      as projection on logali.SelProducts3 {
+        key Name,
+            *
+    };
+    entity ProjProducts      as projection on logali.ProjProducts;
+    entity ProjProducts2     as projection on logali.ProjProducts2;
+    entity ProjProducts3     as projection on logali.ProjProducts3 {
+        key Name,
+            *
+    };
 }

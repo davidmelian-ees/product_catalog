@@ -121,3 +121,60 @@ entity SalesData {
         DeliveryDate  : DateTime;
         Revenue       : Decimal(16, 2);
 };
+
+entity SelProducts  as select from Products;
+
+entity SelProducts1 as select from Products {
+    *
+};
+
+entity SelProducts2 as select from Products {
+    Name,
+    Price,
+    Quantity
+};
+
+entity SelProducts3 as
+    select from Products as Products
+    left join ProductReview as ProductReview
+        on Products.Name = ProductReview.Name
+    {
+        ProductReview.Rating,
+        Products.Name,
+        sum(Products.Price) as TotalPrice : Decimal(16, 2)
+    }
+    group by
+        ProductReview.Rating,
+        Products.Name
+    order by
+        Rating;
+
+entity ProjProducts  as projection on Products;
+
+entity ProjProducts2 as projection on Products {
+    *
+};
+
+entity ProjProducts3 as projection on Products {
+    ReleaseDate,
+    Name
+};
+
+// Entidades con parámetros: no soportadas en SQLite (se usarán con HANA)
+// entity ParamProducts(pName : String)     as
+//     select from Products {
+//         Name,
+//         Price,
+//         Quantity
+//     }
+//     where
+//         Name = :pName;
+//
+// entity ProjParamProducts(pName : String) as projection on Products
+//     where
+//         Name = :pName;
+
+extend Products with {
+    PriceCondition     : String(2);
+    PriceDetermination : String(3);
+};
