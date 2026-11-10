@@ -166,3 +166,49 @@ context sales {
     };
 
 }
+
+context reports {
+
+    entity AverageRating as
+        select from materials.ProductReview {
+            key Product.ID  as ProductId,
+                avg(Rating) as AverageRating : Decimal(16, 2)
+        }
+        group by
+            Product.ID;
+
+    entity Products      as
+        select from materials.Products
+        mixin {
+            ToStockAvailability : Association to materials.StockAvailability
+                                      on ToStockAvailability.ID = $projection.StockAvailability;
+            ToAverageRating     : Association to AverageRating
+                                      on ToAverageRating.ProductId = ID;
+        }
+        into {
+            *,
+            ToAverageRating.AverageRating as Rating,
+            case
+                when Quantity >= 8 then 3
+                when Quantity > 0  then 2
+                else 1
+            end                           as StockAvailability : Integer,
+            ToStockAvailability
+        };
+
+    entity EntityCasting as
+        select
+            key ID,
+                cast(Price as Integer) as Price,
+                Price                  as Price2 : Integer
+        from materials.Products;
+
+    entity EntityExists  as
+        select from materials.Products {
+            key ID,
+                Name
+        }
+        where
+            exists Supplier[Name = 'Tecnología Canaria S.L.'];
+
+}
