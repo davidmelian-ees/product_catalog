@@ -1,5 +1,10 @@
 namespace com.logali;
 
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+
 type Name : String(50);
 
 type Address {
@@ -56,94 +61,90 @@ entity Car {
         virtual discount_2 : Decimal;
 };
 
-entity Products {
-    key ID               : UUID;
-        Name             : String not null;
-        Description      : String;
-        ImageUrl         : String;
-        ReleaseDate      : DateTime default $now;
-        DiscontinuedDate : DateTime;
-        Price            : Decimal(16, 2);
-        Height           : type of Price;
-        Width            : Decimal(16, 2);
-        Depth            : Decimal(16, 2);
-        Quantity         : Decimal(16, 2);
-        // Asociaciones no administradas (Lab 3, punto 1). Se comentan al
-        // crear las administradas para no duplicar las claves foráneas.
-        // Supplier_Id     : UUID;
-        // ToSupplier      : Association to one Suppliers
-        //                     on ToSupplier.ID = Supplier_Id;
-        // UnitOfMeasure_Id : String(2);
-        // ToUnitOfMeasure : Association to UnitOfMeasures
-        //                     on ToUnitOfMeasure.ID = UnitOfMeasure_Id;
-        Supplier         : Association to Suppliers;
-        UnitOfMeasure    : Association to UnitOfMeasures;
-        Currency         : Association to Currencies;
-        DimensionUnit    : Association to DimensionUnits;
-        Category         : Association to Categories;
-        SalesData        : Association to many SalesData
-                             on SalesData.Product = $self;
-        Reviews          : Association to many ProductReview
-                             on Reviews.Product = $self;
+entity Products : cuid, managed {
+    Name             : localized String not null;
+    Description      : localized String;
+    ImageUrl         : String;
+    ReleaseDate      : DateTime default $now;
+    DiscontinuedDate : DateTime;
+    Price            : Decimal(16, 2);
+    Height           : type of Price;
+    Width            : Decimal(16, 2);
+    Depth            : Decimal(16, 2);
+    Quantity         : Decimal(16, 2);
+    // Asociaciones no administradas (Lab 3, punto 1). Se comentan al
+    // crear las administradas para no duplicar las claves foráneas.
+    // Supplier_Id     : UUID;
+    // ToSupplier      : Association to one Suppliers
+    //                     on ToSupplier.ID = Supplier_Id;
+    // UnitOfMeasure_Id : String(2);
+    // ToUnitOfMeasure : Association to UnitOfMeasures
+    //                     on ToUnitOfMeasure.ID = UnitOfMeasure_Id;
+    Supplier         : Association to Suppliers;
+    UnitOfMeasure    : Association to UnitOfMeasures;
+    Currency         : Association to Currencies;
+    DimensionUnit    : Association to DimensionUnits;
+    Category         : Association to Categories;
+    SalesData        : Association to many SalesData
+                         on SalesData.Product = $self;
+    Reviews          : Association to many ProductReview
+                         on Reviews.Product = $self;
 };
 
-entity Suppliers {
-    key ID      : UUID;
-        Name    : type of Products : Name;
-        Address : Address;
-        Email   : String;
-        Phone   : String;
-        Fax     : String;
-        Product : Association to many Products
-                      on Product.Supplier = $self;
+entity Suppliers : cuid, managed {
+    Name    : type of Products : Name;
+    Address : Address;
+    Email   : String;
+    Phone   : String;
+    Fax     : String;
+    Product : Association to many Products
+                  on Product.Supplier = $self;
 };
 
 entity Categories {
     key ID         : String(1);
-        Name       : String;
+        Name       : localized String;
 };
 
 entity StockAvailability {
     key ID         : Integer;
-        Description: String;
+        Description: localized String;
 };
 
 entity Currencies {
     key ID         : String(3);
-        Description: String;
+        Description: localized String;
 };
 
 entity UnitOfMeasures {
     key ID         : String(2);
-        Description: String;
+        Description: localized String;
 };
 
 entity DimensionUnits {
     key ID         : String(2);
-        Description: String;
+        Description: localized String;
 };
 
 entity Months {
     key ID         : String(2);
-        Description: String;
-        ShortDescription: String(3);
+        Description: localized String;
+        ShortDescription: localized String(3);
 };
 
-entity ProductReview {
-    key ID      : UUID;
-        Name    : String;
-        Rating  : Integer;
-        Comment : String;
-        Product : Association to Products;
+entity ProductReview : cuid, managed {
+    Name    : String;
+    Rating  : Integer;
+    Comment : String;
+    Product : Association to Products;
 };
 
-entity SalesData {
-    key ID            : UUID;
-        DeliveryDate  : DateTime;
-        Revenue       : Decimal(16, 2);
-        Product       : Association to Products;
-        Currency      : Association to Currencies;
-        DeliveryMonth : Association to Months;
+entity SalesData : cuid, managed {
+    DeliveryDate  : DateTime;
+    Revenue       : Decimal(16, 2);
+    Product       : Association to Products;
+    Currency      : Association to Currencies;
+    DeliveryMonth : Association to Months;
 };
 
 entity SelProducts  as select from Products;
@@ -221,17 +222,15 @@ entity StudentCourse {
         Course  : Association to Course;
 };
 
-entity Orders {
-    key ID       : UUID;
-        Date     : Date;
-        Customer : String;
-        Item     : Composition of many OrderItems
-                       on Item.Order = $self;
+entity Orders : cuid {
+    Date     : Date;
+    Customer : String;
+    Item     : Composition of many OrderItems
+                   on Item.Order = $self;
 };
 
-entity OrderItems {
-    key ID       : UUID;
-        Order    : Association to Orders;
-        Product  : Association to Products;
-        Quantity : Integer;
+entity OrderItems : cuid {
+    Order    : Association to Orders;
+    Product  : Association to Products;
+    Quantity : Integer;
 };
