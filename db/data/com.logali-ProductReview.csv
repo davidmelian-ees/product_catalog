@@ -1,4 +1,4 @@
-Name;Rating;Comment
-Portátil Pro 14;5;Muy rápido
-Monitor 27;4;Buena imagen
-Balón de fútbol;3;Correcto
+ID;Name;Rating;Comment;Product_ID
+9c0d1e2f-0000-4000-8000-000000000001;Portátil Pro 14;5;Muy rápido;5f1b6c1e-1c1a-4a3e-9a51-000000000001
+9c0d1e2f-0000-4000-8000-000000000002;Monitor 27;4;Buena imagen;5f1b6c1e-1c1a-4a3e-9a51-000000000002
+9c0d1e2f-0000-4000-8000-000000000003;Balón de fútbol;3;Correcto;5f1b6c1e-1c1a-4a3e-9a51-000000000003

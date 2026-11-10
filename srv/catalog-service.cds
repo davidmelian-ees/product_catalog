@@ -1,6 +1,7 @@
 using {com.logali as logali} from '../db/schema';
 
 service CatalogService {
+    @cds.redirection.target
     entity Products          as projection on logali.Products;
     entity Suppliers         as projection on logali.Suppliers;
     entity Categories        as projection on logali.Categories;
@@ -27,4 +28,9 @@ service CatalogService {
         key Name,
             *
     };
+    entity Course            as projection on logali.Course;
+    entity Student           as projection on logali.Student;
+    entity StudentCourse     as projection on logali.StudentCourse;
+    entity Orders            as projection on logali.Orders;
+    entity OrderItems        as projection on logali.OrderItems;
 }
