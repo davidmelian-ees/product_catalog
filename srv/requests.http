@@ -28,3 +28,12 @@ Content-Type: application/json
 
 ### Borrado de un pedido
 DELETE http://localhost:4004/odata/v4/manage-orders/Orders('client5@client5.com')
+
+### Función vinculada: tasa de impuestos del cliente
+GET http://localhost:4004/odata/v4/manage-orders/Orders('client1@client1.com')/ManageOrders.getClientTaxRate(clientEmail='client1@client1.com')
+
+### Acción vinculada: cancelar pedido
+POST http://localhost:4004/odata/v4/manage-orders/Orders('client2@client2.com')/ManageOrders.cancelOrder
+Content-Type: application/json
+
+{ "clientEmail": "client2@client2.com" }

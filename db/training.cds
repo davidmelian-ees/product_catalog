@@ -1,5 +1,7 @@
 namespace com.training;
 
+using {Country} from '@sap/cds/common';
+
 type EmailsAddresses_01 : array of {
     kind  : String;
     email : String;
@@ -85,4 +87,6 @@ entity Orders {
         CreatedOn   : Date;
         Reviewed    : Boolean;
         Approved    : Boolean;
+        Country     : Country;
+        Status      : String(1);
 };
