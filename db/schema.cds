@@ -55,6 +55,7 @@ context materials {
     entity StockAvailability {
         key ID         : Integer;
             Description: localized String;
+            Product    : Association to Products;
     };
 
     entity Currencies {
