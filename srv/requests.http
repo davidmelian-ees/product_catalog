@@ -1,0 +1,30 @@
+### Lectura de todos los pedidos
+GET http://localhost:4004/odata/v4/manage-orders/Orders
+
+### Lectura de un pedido concreto
+GET http://localhost:4004/odata/v4/manage-orders/Orders('client1@client1.com')
+
+### Creación de un pedido
+POST http://localhost:4004/odata/v4/manage-orders/Orders
+Content-Type: application/json
+
+{
+    "ClientEmail": "client5@client5.com",
+    "FirstName": "Lorena",
+    "LastName": "García",
+    "CreatedOn": "2019-01-01",
+    "Reviewed": false,
+    "Approved": false
+}
+
+### Actualización de un pedido
+PUT http://localhost:4004/odata/v4/manage-orders/Orders('client5@client5.com')
+Content-Type: application/json
+
+{
+    "FirstName": "Lorena (actualizado)",
+    "LastName": "García Pérez"
+}
+
+### Borrado de un pedido
+DELETE http://localhost:4004/odata/v4/manage-orders/Orders('client5@client5.com')
