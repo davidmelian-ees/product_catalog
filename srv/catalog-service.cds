@@ -1,5 +1,7 @@
 using {com.logali as logali} from '../db/schema';
 
+@odata
+@graphql
 service CatalogService {
 
     entity Products          as

@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@sap/cds": "^10"
+    "@cap-js/graphql": "^0.14.0",
+    "@sap-cloud-sdk/http-client": "^4.10.0",
+    "@sap-cloud-sdk/resilience": "^4.10.0",
+    "@sap/cds": "^10",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "cds-swagger-ui-express": "^0.11.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3"
@@ -11,5 +18,17 @@
   "scripts": {
     "start": "cds-serve"
   },
-  "private": true
+  "private": true,
+  "cds": {
+    "requires": {
+      "sapbackend": {
+        "kind": "odata-v2",
+        "model": "srv/external/sapbackend",
+        "credentials": {
+          "url": "http://erp13.sap4practice.com:9037/sap/opu/odata/sap/YSAPUI5_SRV_01",
+          "authentication": "BasicAuthentication"
+        }
+      }
+    }
+  }
 }

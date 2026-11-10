@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="YSAPUI5_SRV_01" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="Incidents" sap:content-version="1">
+        <Key>
+          <PropertyRef Name="IncidenceId"/>
+          <PropertyRef Name="SapId"/>
+          <PropertyRef Name="EmployeeId"/>
+        </Key>
+        <Property Name="IncidenceId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Incidencia"/>
+        <Property Name="SapId" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Usuario SAP"/>
+        <Property Name="EmployeeId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Empleado"/>
+        <Property Name="CreationDate" Type="Edm.DateTime" Precision="7" sap:label="Fecha creación"/>
+        <Property Name="Type" Type="Edm.String" MaxLength="1" sap:label="Tipo"/>
+        <Property Name="Reason" Type="Edm.String" MaxLength="40" sap:label="Motivo"/>
+      </EntityType>
+      <EntityContainer Name="YSAPUI5_SRV_01_Entities" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="IncidentsSet" EntityType="YSAPUI5_SRV_01.Incidents" sap:content-version="1"/>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
